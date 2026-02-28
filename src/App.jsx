@@ -120,8 +120,9 @@ export default function App() {
 
     if (!user) {
         return (
-            <div className="login-container glass-bg">
-                <div className="glass login-card">
+            <div className="login-container">
+                <div className="login-bg"></div>
+                <div className="login-card">
                     <h1 className="hero-text">Sara & Sunit</h1>
                     <p className="subtitle">Our Shared Kitchen & Menu Planner</p>
                     {error && <p className="error-msg">{error}</p>}

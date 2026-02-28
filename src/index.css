@@ -70,6 +70,88 @@ body {
   box-shadow: 0 0 25px rgba(46, 204, 113, 0.5);
 }
 
+/* Premium Login Page */
+.login-container {
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: black;
+}
+
+.login-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/hero-bg.png') center/cover no-repeat;
+  filter: brightness(0.4) saturate(0.8);
+  transform: scale(1.05);
+  /* Subtle scale to prevent white edges */
+}
+
+.login-card {
+  position: relative;
+  z-index: 10;
+  width: 90%;
+  max-width: 440px;
+  padding: 60px 40px;
+  text-align: center;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(25px) saturate(1.8);
+  -webkit-backdrop-filter: blur(25px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
+  animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1a1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -2px;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+
+.error-msg {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Tab Bar (Mobile) */
 .tab-bar {
   position: fixed;
