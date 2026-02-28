@@ -135,25 +135,27 @@ export default function App() {
     return (
         <div className="app-layout">
             <nav className="tab-bar">
-                <div
-                    className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`}
-                    onClick={() => setCurrentView('calendar')}
-                >
-                    <Calendar size={28} strokeWidth={currentView === 'calendar' ? 2.5 : 1.5} />
-                    <span className="nav-label">Plan</span>
+                <div className="nav-group">
+                    <div
+                        className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`}
+                        onClick={() => setCurrentView('calendar')}
+                    >
+                        <Calendar size={28} strokeWidth={currentView === 'calendar' ? 2.5 : 1.5} />
+                        <span className="nav-label">Plan</span>
+                    </div>
+                    <div
+                        className={`nav-item ${currentView === 'recipes' ? 'active' : ''}`}
+                        onClick={() => setCurrentView('recipes')}
+                    >
+                        <Utensils size={28} strokeWidth={currentView === 'recipes' ? 2.5 : 1.5} />
+                        <span className="nav-label">Studio</span>
+                    </div>
+                    <div className="nav-item">
+                        <Star size={28} strokeWidth={1.5} />
+                        <span className="nav-label">Box</span>
+                    </div>
                 </div>
-                <div
-                    className={`nav-item ${currentView === 'recipes' ? 'active' : ''}`}
-                    onClick={() => setCurrentView('recipes')}
-                >
-                    <Utensils size={28} strokeWidth={currentView === 'recipes' ? 2.5 : 1.5} />
-                    <span className="nav-label">Studio</span>
-                </div>
-                <div className="nav-item">
-                    <Star size={28} strokeWidth={1.5} />
-                    <span className="nav-label">Box</span>
-                </div>
-                <button onClick={handleLogout} className="logout-btn">
+                <button onClick={handleLogout} className="logout-btn" style={{ marginTop: 'auto' }}>
                     <LogOut size={24} />
                 </button>
             </nav>
