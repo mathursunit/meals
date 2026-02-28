@@ -1,0 +1,25 @@
+{
+  "name": "menuplanning",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "description": "Sara & Sunit Menu Planner PWA",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
+    "firebase": "^12.10.0",
+    "firebase-admin": "^13.7.0",
+    "lucide-react": "^0.575.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^6.30.3",
+    "vite": "^7.3.1",
+    "vite-plugin-pwa": "^1.2.0"
+  }
+}
