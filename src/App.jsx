@@ -140,14 +140,14 @@ export default function App() {
                         className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`}
                         onClick={() => setCurrentView('calendar')}
                     >
-                        <Calendar size={22} strokeWidth={currentView === 'calendar' ? 2.5 : 2} />
+                        <Calendar size={22} strokeWidth={2} />
                         <span className="nav-label">Plan</span>
                     </div>
                     <div
                         className={`nav-item ${currentView === 'recipes' ? 'active' : ''}`}
                         onClick={() => setCurrentView('recipes')}
                     >
-                        <Utensils size={22} strokeWidth={currentView === 'recipes' ? 2.5 : 2} />
+                        <Utensils size={22} strokeWidth={2} />
                         <span className="nav-label">Studio</span>
                     </div>
                     <div className="nav-item">
@@ -156,7 +156,7 @@ export default function App() {
                     </div>
                 </div>
                 <button onClick={handleLogout} className="logout-btn">
-                    <LogOut size={20} />
+                    <LogOut size={20} strokeWidth={2} />
                 </button>
             </nav>
 
