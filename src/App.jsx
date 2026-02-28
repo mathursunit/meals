@@ -140,30 +140,30 @@ export default function App() {
                         className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`}
                         onClick={() => setCurrentView('calendar')}
                     >
-                        <Calendar size={28} strokeWidth={currentView === 'calendar' ? 2.5 : 1.5} />
+                        <Calendar size={22} strokeWidth={currentView === 'calendar' ? 2.5 : 2} />
                         <span className="nav-label">Plan</span>
                     </div>
                     <div
                         className={`nav-item ${currentView === 'recipes' ? 'active' : ''}`}
                         onClick={() => setCurrentView('recipes')}
                     >
-                        <Utensils size={28} strokeWidth={currentView === 'recipes' ? 2.5 : 1.5} />
+                        <Utensils size={22} strokeWidth={currentView === 'recipes' ? 2.5 : 2} />
                         <span className="nav-label">Studio</span>
                     </div>
                     <div className="nav-item">
-                        <Star size={28} strokeWidth={1.5} />
-                        <span className="nav-label">Box</span>
+                        <Star size={22} strokeWidth={2} />
+                        <span className="nav-label">Browse</span>
                     </div>
                 </div>
-                <button onClick={handleLogout} className="logout-btn" style={{ marginTop: 'auto' }}>
-                    <LogOut size={24} />
+                <button onClick={handleLogout} className="logout-btn">
+                    <LogOut size={20} />
                 </button>
             </nav>
 
             <main className="content-area">
                 <header className="main-header">
                     <div className="user-info">
-                        <p className="date-text">{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                        <p className="date-text">{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
                         <h2 className="title-text">Hi, {user.displayName.split(' ')[0]}</h2>
                     </div>
                     <img src={user.photoURL} alt="Profile" className="avatar" title="Logout" onClick={handleLogout} />
@@ -189,21 +189,21 @@ export default function App() {
 
                         <section className="day-view">
                             <div className="section-header">
-                                <h3>
-                                    {selectedDate.toDateString() === new Date().toDateString() ? "Today's Menu" : selectedDate.toLocaleDateString('en-US', { weekday: 'long' })}
+                                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', marginBottom: '16px' }}>
+                                    {selectedDate.toDateString() === new Date().toDateString() ? "Tonight's Service" : selectedDate.toLocaleDateString('en-US', { weekday: 'long' })}
                                 </h3>
                             </div>
 
-                            {selectedPlans.length > 0 ? (
-                                selectedPlans.map(plan => (
-                                    <div key={plan.id} className={`meal-card glass ${plan.wasCooked ? 'cooked-mode' : ''}`} onClick={() => handleViewRecipe(plan)} style={{ cursor: 'pointer' }}>
-                                        <div className="meal-image-placeholder">
-                                            {plan.wasCooked ? <CheckCircle color="var(--accent-color)" size={32} /> : <Utensils color="var(--text-secondary)" size={32} />}
-                                        </div>
-                                        <div className="meal-details">
-                                            <h4>{plan.title}</h4>
-                                            <p>Tap to view recipe</p>
-                                            <div className="meal-actions">
+                            <div className="meal-grid">
+                                {selectedPlans.length > 0 ? (
+                                    selectedPlans.map(plan => (
+                                        <div key={plan.id} className={`meal-card glass ${plan.wasCooked ? 'cooked-mode' : ''}`} onClick={() => handleViewRecipe(plan)} style={{ cursor: 'pointer' }}>
+                                            <div className="meal-image-placeholder">
+                                                {plan.wasCooked ? <CheckCircle color="var(--accent-color)" size={24} /> : <Utensils color="var(--text-secondary)" size={24} />}
+                                            </div>
+                                            <div className="meal-details">
+                                                <h4>{plan.title}</h4>
+                                                <p>Tap to view recipe</p>
                                                 <button
                                                     className={`cooked-toggle ${plan.wasCooked ? 'is-cooked' : ''}`}
                                                     onClick={(e) => {
@@ -211,32 +211,37 @@ export default function App() {
                                                         toggleCooked(plan.id, plan.wasCooked);
                                                     }}
                                                 >
-                                                    {plan.wasCooked ? 'Cooked! ✨' : 'Mark as Cooked'}
+                                                    {plan.wasCooked ? 'Cooked! ✨' : 'Done'}
                                                 </button>
                                             </div>
                                         </div>
+                                    ))
+                                ) : (
+                                    <div className="meal-card glass" style={{ opacity: 0.3, borderStyle: 'dashed', justifyContent: 'center' }} onClick={() => setIsModalOpen(true)}>
+                                        <div className="meal-details" style={{ textAlign: 'center' }}>
+                                            <Plus size={24} style={{ marginBottom: '8px' }} />
+                                            <h4>Add to Menu</h4>
+                                        </div>
                                     </div>
-                                ))
-                            ) : (
-                                <div className="meal-card glass" style={{ opacity: 0.4, borderStyle: 'dashed' }}>
-                                    <div className="meal-image-placeholder">
-                                        <Plus color="var(--text-secondary)" size={32} />
-                                    </div>
-                                    <div className="meal-details">
-                                        <h4>Empty Table</h4>
-                                        <p>Schedule a masterpiece</p>
-                                    </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
 
                             <div className="action-grid">
                                 <div className="action-card glass" onClick={() => setIsModalOpen(true)}>
-                                    <Plus size={30} color="var(--accent-color)" />
-                                    <p>Add Meal</p>
+                                    <Plus size={20} color="var(--accent-color)" />
+                                    <p>Schedule</p>
                                 </div>
                                 <div className="action-card glass" onClick={() => setCurrentView('recipes')}>
-                                    <Star size={30} color="#FFD700" />
-                                    <p>Recipe Box</p>
+                                    <Star size={20} color="#FFD700" />
+                                    <p>Box</p>
+                                </div>
+                                <div className="action-card glass">
+                                    <Utensils size={20} color="var(--text-secondary)" />
+                                    <p>Grocery</p>
+                                </div>
+                                <div className="action-card glass">
+                                    <ChevronRight size={20} color="var(--text-secondary)" />
+                                    <p>History</p>
                                 </div>
                             </div>
                         </section>
