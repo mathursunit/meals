@@ -52,10 +52,10 @@ body {
 }
 
 .content-area {
-  padding: 20px;
-  max-width: 1000px;
+  padding: 40px 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 }
 
 /* Header Overhaul */
@@ -91,13 +91,14 @@ body {
   border: 2px solid var(--accent-color);
   box-shadow: 0 0 15px var(--accent-glow);
   object-fit: cover;
+  cursor: pointer;
 }
 
 /* Glassmorphism Utility */
 .glass {
   background: var(--surface-color);
-  backdrop-filter: blur(20px) saturate(1.8);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  backdrop-filter: blur(25px) saturate(1.8);
+  -webkit-backdrop-filter: blur(25px) saturate(1.8);
   border: 1px solid var(--glass-border);
   border-radius: 28px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -109,7 +110,6 @@ body {
   border: none;
   padding: 14px 28px;
   border-radius: 50px;
-  /* Pill shape for premium feel */
   font-weight: 700;
   font-family: var(--font-main);
   text-transform: uppercase;
@@ -146,7 +146,6 @@ body {
   background: url('/hero-bg.png') center/cover no-repeat;
   filter: brightness(0.4) saturate(0.8);
   transform: scale(1.05);
-  /* Subtle scale to prevent white edges */
 }
 
 .login-card {
@@ -166,7 +165,7 @@ body {
 }
 
 .hero-text {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif);
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 5px;
@@ -186,15 +185,6 @@ body {
   margin-bottom: 50px;
 }
 
-.error-msg {
-  background: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
-  padding: 10px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-}
-
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -207,13 +197,13 @@ body {
   }
 }
 
-/* Tab Bar (Mobile) */
+/* Navigation System */
 .tab-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 85px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -225,16 +215,42 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* iPad Master-Detail Sidebar */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.45;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  color: white;
+}
+
+.nav-item:hover {
+  opacity: 0.8;
+}
+
+.nav-item.active {
+  opacity: 1;
+  color: var(--accent-color);
+}
+
+.nav-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 @media (min-width: 768px) {
   .app-layout {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 120px 1fr;
     height: 100vh;
   }
 
   .content-area {
-    padding: 40px 60px;
+    padding: 60px 12%;
     height: 100vh;
     overflow-y: auto;
   }
@@ -243,11 +259,164 @@ body {
     position: static;
     flex-direction: column;
     height: 100%;
-    border-radius: 0;
     justify-content: center;
-    gap: 40px;
+    gap: 50px;
     border-top: none;
     border-right: 1px solid var(--glass-border);
     padding: 0;
+    background: transparent;
   }
+}
+
+/* === Component Library === */
+
+.week-picker {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+  padding: 10px 4px;
+  scroll-snap-type: x mandatory;
+}
+
+.week-picker::-webkit-scrollbar {
+  display: none;
+}
+
+.day-card {
+  min-width: 80px;
+  padding: 22px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  scroll-snap-align: start;
+}
+
+.day-card.selected {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px -8px var(--accent-glow);
+}
+
+.day-name {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+.day-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.section-header h3 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  letter-spacing: -1px;
+}
+
+.meal-card {
+  display: flex;
+  gap: 25px;
+  padding: 25px;
+  margin-bottom: 25px;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.meal-card.cooked-mode {
+  border-color: var(--accent-color);
+  background: rgba(58, 227, 116, 0.05);
+}
+
+.meal-image-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meal-details h4 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.meal-details p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.cooked-toggle {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cooked-toggle.is-cooked {
+  background: var(--accent-color);
+  color: #000;
+  box-shadow: 0 10px 20px -5px var(--accent-glow);
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.action-card {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-8px);
+}
+
+.action-card p {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logout-btn {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  opacity: 1;
+  color: var(--accent-color);
 }

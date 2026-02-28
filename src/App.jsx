@@ -153,7 +153,7 @@ export default function App() {
                     <Star size={28} strokeWidth={1.5} />
                     <span className="nav-label">Box</span>
                 </div>
-                <button onClick={handleLogout} className="logout-btn" style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', marginTop: 'auto', padding: '20px' }}>
+                <button onClick={handleLogout} className="logout-btn">
                     <LogOut size={24} />
                 </button>
             </nav>
@@ -169,7 +169,7 @@ export default function App() {
 
                 {currentView === 'calendar' ? (
                     <>
-                        <section className="week-picker">
+                        <section className="week-picker no-scrollbar">
                             {weekDays.map((date, i) => {
                                 const isSelected = date.toDateString() === selectedDate.toDateString();
                                 return (
@@ -186,8 +186,8 @@ export default function App() {
                         </section>
 
                         <section className="day-view">
-                            <div className="section-header" style={{ marginBottom: '20px' }}>
-                                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem' }}>
+                            <div className="section-header">
+                                <h3>
                                     {selectedDate.toDateString() === new Date().toDateString() ? "Today's Menu" : selectedDate.toLocaleDateString('en-US', { weekday: 'long' })}
                                 </h3>
                             </div>
@@ -227,14 +227,14 @@ export default function App() {
                                 </div>
                             )}
 
-                            <div className="action-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '40px' }}>
-                                <div className="action-card glass" onClick={() => setIsModalOpen(true)} style={{ padding: '30px', textAlign: 'center', cursor: 'pointer' }}>
+                            <div className="action-grid">
+                                <div className="action-card glass" onClick={() => setIsModalOpen(true)}>
                                     <Plus size={30} color="var(--accent-color)" />
-                                    <p style={{ marginTop: '10px', fontWeight: '600' }}>Add Meal</p>
+                                    <p>Add Meal</p>
                                 </div>
-                                <div className="action-card glass" onClick={() => setCurrentView('recipes')} style={{ padding: '30px', textAlign: 'center', cursor: 'pointer' }}>
+                                <div className="action-card glass" onClick={() => setCurrentView('recipes')}>
                                     <Star size={30} color="#FFD700" />
-                                    <p style={{ marginTop: '10px', fontWeight: '600' }}>Recipe Box</p>
+                                    <p>Recipe Box</p>
                                 </div>
                             </div>
                         </section>
