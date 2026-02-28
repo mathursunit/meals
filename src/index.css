@@ -18,14 +18,16 @@
 }
 
 :root {
-  --bg-color: #0a0a0a;
-  --surface-color: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --accent-color: #2ECC71;
-  /* Fresh Herb Green */
+  --bg-color: #0d0d0d;
+  --surface-color: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --accent-color: #3ae374;
+  /* Electric Mint */
+  --accent-glow: rgba(58, 227, 116, 0.4);
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --font-family: 'Outfit', sans-serif;
+  --text-secondary: rgba(255, 255, 255, 0.5);
+  --font-main: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
 * {
@@ -37,32 +39,85 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
-  font-family: var(--font-family);
+  font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   overflow-x: hidden;
+  background: radial-gradient(circle at top left, #1a1a1a 0%, #0d0d0d 100%);
+}
+
+.app-layout {
+  min-height: 100vh;
+}
+
+.content-area {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+
+/* Header Overhaul */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 20px 0;
+}
+
+.title-text {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  letter-spacing: -1.5px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.date-text {
+  font-family: var(--font-main);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 15px var(--accent-glow);
+  object-fit: cover;
 }
 
 /* Glassmorphism Utility */
 .glass {
   background: var(--surface-color);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: 28px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .glow-btn {
   background: var(--accent-color);
   color: #000;
   border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 50px;
+  /* Pill shape for premium feel */
+  font-weight: 700;
+  font-family: var(--font-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 20px -5px var(--accent-glow);
 }
 
 .glow-btn:hover {
@@ -158,20 +213,30 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 80px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 1000;
-  border-radius: 20px 20px 0 0;
+  background: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* iPad Master-Detail Sidebar */
 @media (min-width: 768px) {
   .app-layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 100px 1fr;
     height: 100vh;
+  }
+
+  .content-area {
+    padding: 40px 60px;
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .tab-bar {
@@ -179,8 +244,10 @@ body {
     flex-direction: column;
     height: 100%;
     border-radius: 0;
-    justify-content: flex-start;
-    padding-top: 40px;
-    gap: 20px;
+    justify-content: center;
+    gap: 40px;
+    border-top: none;
+    border-right: 1px solid var(--glass-border);
+    padding: 0;
   }
 }
