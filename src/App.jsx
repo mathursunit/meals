@@ -139,14 +139,14 @@ export default function App() {
                     className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`}
                     onClick={() => setCurrentView('calendar')}
                 >
-                    <Calendar size={28} strokeWidth={isSelected ? 2.5 : 1.5} />
+                    <Calendar size={28} strokeWidth={currentView === 'calendar' ? 2.5 : 1.5} />
                     <span className="nav-label">Plan</span>
                 </div>
                 <div
                     className={`nav-item ${currentView === 'recipes' ? 'active' : ''}`}
                     onClick={() => setCurrentView('recipes')}
                 >
-                    <Utensils size={28} strokeWidth={isSelected ? 2.5 : 1.5} />
+                    <Utensils size={28} strokeWidth={currentView === 'recipes' ? 2.5 : 1.5} />
                     <span className="nav-label">Studio</span>
                 </div>
                 <div className="nav-item">
